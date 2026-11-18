@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academy | Rekebot - AI-Powered Creative Agency</title>
+    <meta name="description"
+        content="Learn the latest open-source AI tools with our exclusive courses. Coming soon.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── Academy page ───────────────────────────────────────────── */
+        .academy-svg-wrap {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #080E1E;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .academy-svg-wrap svg { width: 100%; height: 100%; display: block; }
+
+        /* countdown */
+        .countdown-row {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-start;
+            margin: 0.9rem 0 1.1rem;
+        }
+        .countdown-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(0,229,255,0.07);
+            border: 1px solid rgba(0,229,255,0.2);
+            border-radius: 8px;
+            padding: 0.5rem 0.75rem;
+            min-width: 54px;
+        }
+        .countdown-num {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #00E5FF;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+        .countdown-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.4);
+            margin-top: 3px;
+        }
+        .btn-view-course {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #00E5FF 0%, #0EA5E9 100%);
+            color: #0A0F1D;
+            font-weight: 700;
+            font-size: 0.88rem;
+            padding: 0.6rem 1.3rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .btn-view-course:hover { opacity: 0.85; transform: translateY(-2px); }
+
+        /* course modal */
+        #courseModal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.78);
+            z-index: 9999;
+            overflow-y: auto;
+            padding: 2rem 1rem;
+        }
+        .course-modal-box {
+            background: #0D1526;
+            border: 1px solid rgba(0,229,255,0.15);
+            border-radius: 16px;
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            position: relative;
+        }
+        .close-course-modal {
+            position: absolute;
+            top: 1.2rem; right: 1.5rem;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: rgba(255,255,255,0.35);
+            line-height: 1;
+            transition: color 0.2s;
+            background: none;
+            border: none;
+        }
+        .close-course-modal:hover { color: #fff; }
+        .course-badge {
+            display: inline-block;
+            background: rgba(0,229,255,0.1);
+            border: 1px solid rgba(0,229,255,0.3);
+            color: #00E5FF;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+        .course-modal-box h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .course-desc {
+            color: rgba(255,255,255,0.58);
+            font-size: 0.93rem;
+            line-height: 1.65;
+            margin-bottom: 1.6rem;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            padding-bottom: 1.4rem;
+        }
+        .course-module-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.33);
+            margin-bottom: 0.8rem;
+            margin-top: 1.4rem;
+        }
+        .course-module {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.9rem 1rem;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 0.6rem;
+        }
+        .module-icon {
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .module-icon.cyan   { background: rgba(0,229,255,0.12);   color: #00E5FF; }
+        .module-icon.purple { background: rgba(139,92,246,0.12);  color: #A78BFA; }
+        .module-icon.green  { background: rgba(16,185,129,0.12);  color: #34D399; }
+        .module-icon.orange { background: rgba(251,146,60,0.12);  color: #FB923C; }
+        .module-info h4 { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.2rem; }
+        .module-info p  { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.5; margin: 0; }
+        .optional-tag {
+            display: inline-block;
+            font-size: 0.63rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            background: rgba(251,146,60,0.12);
+            border: 1px solid rgba(251,146,60,0.3);
+            color: #FB923C;
+            padding: 0.14rem 0.5rem;
+            border-radius: 50px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+        .course-footer-note {
+            margin-top: 1.8rem;
+            padding: 1rem 1.2rem;
+            background: rgba(16,185,129,0.07);
+            border: 1px solid rgba(16,185,129,0.2);
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.65);
+        }
+        .course-footer-note i { color: #34D399; margin-right: 6px; }
+    </style>
+</head>
+
+<body>
+
+    <!-- Course Content Modal -->
+    <div id="courseModal">
+        <div class="course-modal-box">
+            <button class="close-course-modal" onclick="document.getElementById('courseModal').style.display='none'">&times;</button>
+            <div class="course-badge"><i class="fas fa-graduation-cap" style="margin-right:5px;"></i>Course Curriculum</div>
+            <h2>Unlimited Image Generation Masterclass</h2>
+            <p class="course-desc">A hands-on, project-based course covering the full pipeline — from your first image on Google Colab to publishing on Civitai and beyond. No GPU required. Learn at your own pace, build a creative portfolio, and unlock optional publishing workshops.</p>
+
+            <!-- Core Modules -->
+            <div class="course-module-title">Core Modules</div>
+
+            <div class="course-module">
+                <div class="module-icon cyan"><i class="fas fa-cloud"></i></div>
+                <div class="module-info">
+                    <h4>Module 1 — Google Colab Setup &amp; Runtime</h4>
+                    <p>Navigate Colab notebooks, manage GPU runtimes, install dependencies, and mount Google Drive for persistent storage. Zero local hardware needed.</p>
+                </div>
+            </div>
+
+            <div class="course-module">
+                <div class="module-icon cyan"><i class="fas fa-paint-brush"></i></div>
+                <div class="module-info">
+                    <h4>Module 2 — Stable Diffusion Fundamentals</h4>
+                    <p>txt2img &amp; img2img workflows, samplers, schedulers, and understanding how diffusion models generate imagery step by step.</p>
+                </div>
+            </div>
+
+            <div class="course-module">
+                <div class="module-icon purple"><i class="fas fa-sliders-h"></i></div>
+                <div class="module-info">
+                    <h4>Module 3 — Prompt Engineering &amp; Parameters</h4>
+                    <p>Mastering CFG scale, steps, seeds, negative prompts, aspect ratios, and advanced prompt syntax including attention weights and BREAK tokens.</p>
+                </div>
+            </div>
+
+            <div class="course-module">
+                <div class="module-icon purple"><i class="fas fa-layer-group"></i></div>
+                <div class="module-info">
+                    <h4>Module 4 — LoRAs, Checkpoints &amp; ControlNet</h4>
+                    <p>Find, download, and apply LoRAs and fine-tuned checkpoints from Civitai. Use ControlNet (Canny, Depth, OpenPose) for precision-guided generation.</p>
+                </div>
+            </div>
+
+            <div class="course-module">
+                <div class="module-icon green"><i class="fas fa-globe"></i></div>
+                <div class="module-info">
+                    <h4>Module 5 — Civitai Platform Mastery</h4>
+                    <p>Browse models, understand version metadata, read community reviews, generate directly in the Civitai Generator, and build a creator profile to showcase your work.</p>
+                </div>
+            </div>
+
+            <div class="course-module">
+                <div class="module-icon green"><i class="fas fa-th-large"></i></div>
+                <div class="module-info">
+                    <h4>Module 6 — Building a Consistent Creative Style</h4>
+                    <p>Develop a recognisable visual identity across a series of images using style LoRAs, seed locking, and controlled prompt variation.</p>
+                </div>
+            </div>
+
+            <!-- Optional Workshop -->
+            <div class="course-module-title" style="margin-top:1.8rem;">Optional Workshop <span class="optional-tag">Add-on</span></div>
+
+            <div class="course-module">
+                <div class="module-icon orange"><i class="fas fa-book-open"></i></div>
+                <div class="module-info">
+                    <h4>Workshop — Comic Book Writing, Publishing &amp; Selling <span class="optional-tag">Optional</span></h4>
+                    <p>Structure a compelling story arc and design consistent AI-generated characters panel by panel. Write dialogue, lay out full comic pages, then publish and sell your issues on <strong style="color:#FB923C;">SafariComix</strong> — set up your storefront, prepare print-ready files, price your issues, and run a launch campaign across East African comic book distribution channels.</p>
+                </div>
+            </div>
+
+            <div class="course-footer-note">
+                <i class="fas fa-calendar-check"></i>
+                <strong>Launching December 1, 2026.</strong> Early interest? Follow <a href="https://t.me/rekebotai" target="_blank" rel="noopener noreferrer" style="color:#34D399;">@rekebotai</a> on Telegram for updates and early-access invites.
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar scrolled inner-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Rekebot Logo">
+            </a>
+            <div class="nav-links">
+                <a href="index.html#services" class="nav-link">Creations &amp; Programs</a>
+                <a href="academy.html" class="nav-link">Academy</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="index.html#portfolio" class="nav-link">Portfolio</a>
+                <a href="index.html#contact" class="btn-primary-sm">Leave Feedback</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Academy Header -->
+    <header class="blog-header" style="padding-bottom: 8rem;">
+        <div class="container text-center">
+            <div class="badge">Master open-source algorithms</div>
+            <h1 class="hero-title">Rekebot <span class="highlight">Academy</span></h1>
+            <p class="hero-subtitle" style="margin: 0 auto 3rem auto;">Upskill your creative journey. Our exclusive courses in Stable Diffusion, AI Animation, and LLM implementations are coming soon.</p>
+
+            <div style="margin-top: 5rem;">
+                <div class="service-grid" style="max-width: 900px; margin: 0 auto; text-align: left;">
+
+                    <!-- Course 1: Unlimited Image Generation Masterclass -->
+                    <article class="service-card coming-soon-card">
+                        <div class="academy-svg-wrap">
+                            <!--
+                                SVG: Classroom / education theme for image generation course
+                                Shows a laptop with generated image, floating UI chips (prompt, cfg, seed),
+                                a graduation cap, and a subtle grid background
+                            -->
+                            <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.9"/>
+                                        <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.9"/>
+                                    </linearGradient>
+                                    <linearGradient id="screen" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#1a2744"/>
+                                        <stop offset="100%" stop-color="#0d1526"/>
+                                    </linearGradient>
+                                    <radialGradient id="glow1" cx="38%" cy="55%" r="40%">
+                                        <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.12"/>
+                                        <stop offset="100%" stop-color="#00E5FF" stop-opacity="0"/>
+                                    </radialGradient>
+                                </defs>
+
+                                <!-- Background -->
+                                <rect width="400" height="180" fill="#080E1E"/>
+                                <circle cx="140" cy="90" r="90" fill="url(#glow1)"/>
+
+                                <!-- Subtle dot grid -->
+                                <g fill="rgba(255,255,255,0.04)">
+                                    <circle cx="20" cy="20" r="1.5"/><circle cx="50" cy="20" r="1.5"/><circle cx="80" cy="20" r="1.5"/><circle cx="110" cy="20" r="1.5"/>
+                                    <circle cx="20" cy="50" r="1.5"/><circle cx="50" cy="50" r="1.5"/><circle cx="80" cy="50" r="1.5"/><circle cx="110" cy="50" r="1.5"/>
+                                    <circle cx="20" cy="80" r="1.5"/><circle cx="50" cy="80" r="1.5"/><circle cx="80" cy="80" r="1.5"/>
+                                    <circle cx="20" cy="110" r="1.5"/><circle cx="50" cy="110" r="1.5"/><circle cx="80" cy="110" r="1.5"/>
+                                </g>
+
+                                <!-- Laptop body -->
+                                <rect x="30" y="45" width="170" height="108" rx="6" fill="#141D35" stroke="rgba(0,229,255,0.25)" stroke-width="1.5"/>
+                                <!-- Screen bezel -->
+                                <rect x="36" y="51" width="158" height="88" rx="4" fill="url(#screen)"/>
+
+                                <!-- Generated image on screen (portrait thumbnail) -->
+                                <rect x="44" y="58" width="62" height="74" rx="3" fill="#1E2A45"/>
+                                <!-- Silhouette inside thumbnail -->
+                                <ellipse cx="75" cy="98" rx="16" ry="22" fill="#2a3a5a"/>
+                                <circle cx="75" cy="73" r="10" fill="#2a3a5a"/>
+                                <!-- Gradient shimmer on thumbnail -->
+                                <rect x="44" y="58" width="62" height="74" rx="3" fill="url(#g1)" opacity="0.08"/>
+                                <rect x="44" y="58" width="62" height="2" rx="1" fill="url(#g1)" opacity="0.4"/>
+
+                                <!-- Prompt bar on screen -->
+                                <rect x="112" y="60" width="76" height="12" rx="3" fill="rgba(0,229,255,0.1)" stroke="rgba(0,229,255,0.2)" stroke-width="0.8"/>
+                                <text x="116" y="69.5" font-size="6.5" fill="rgba(0,229,255,0.75)" font-family="monospace">prompt: editorial...</text>
+
+                                <!-- Parameter rows on screen -->
+                                <rect x="112" y="77" width="38" height="9" rx="2" fill="rgba(139,92,246,0.15)" stroke="rgba(139,92,246,0.25)" stroke-width="0.8"/>
+                                <text x="115" y="84" font-size="6" fill="rgba(139,92,246,0.9)" font-family="monospace">CFG: 7.0</text>
+
+                                <rect x="154" y="77" width="34" height="9" rx="2" fill="rgba(16,185,129,0.15)" stroke="rgba(16,185,129,0.25)" stroke-width="0.8"/>
+                                <text x="157" y="84" font-size="6" fill="rgba(16,185,129,0.9)" font-family="monospace">Steps:40</text>
+
+                                <rect x="112" y="91" width="76" height="9" rx="2" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+                                <text x="115" y="98" font-size="6" fill="rgba(255,255,255,0.4)" font-family="monospace">seed: 2847361905</text>
+
+                                <!-- Progress/generate button on screen -->
+                                <rect x="112" y="105" width="76" height="14" rx="3" fill="url(#g1)" opacity="0.9"/>
+                                <text x="134" y="115" font-size="7" fill="#0A0F1D" font-weight="bold" font-family="sans-serif">GENERATE</text>
+
+                                <!-- Keyboard base -->
+                                <rect x="30" y="153" width="170" height="8" rx="2" fill="#0d1120" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                                <!-- Trackpad -->
+                                <rect x="90" y="156" width="50" height="4" rx="1" fill="rgba(255,255,255,0.06)"/>
+
+                                <!-- Graduation cap (top right) -->
+                                <g transform="translate(285, 30)">
+                                    <!-- Board (flat top of cap) -->
+                                    <rect x="-28" y="0" width="56" height="8" rx="2" fill="url(#g1)"/>
+                                    <!-- Hat body -->
+                                    <path d="M-16 8 L16 8 L18 24 L-18 24 Z" fill="#1a2a50" stroke="rgba(0,229,255,0.3)" stroke-width="1"/>
+                                    <!-- Tassel string -->
+                                    <line x1="28" y1="4" x2="36" y2="20" stroke="url(#g1)" stroke-width="2"/>
+                                    <circle cx="36" cy="22" r="4" fill="url(#g1)"/>
+                                    <!-- Center button -->
+                                    <circle cx="0" cy="0" r="4" fill="url(#g1)"/>
+                                </g>
+
+                                <!-- Floating chips (right side) -->
+                                <rect x="230" y="80" width="80" height="16" rx="8" fill="rgba(0,229,255,0.09)" stroke="rgba(0,229,255,0.2)" stroke-width="0.8"/>
+                                <text x="241" y="91" font-size="7.5" fill="rgba(0,229,255,0.85)" font-family="monospace">Stable Diffusion</text>
+
+                                <rect x="238" y="102" width="64" height="16" rx="8" fill="rgba(139,92,246,0.09)" stroke="rgba(139,92,246,0.2)" stroke-width="0.8"/>
+                                <text x="250" y="113" font-size="7.5" fill="rgba(139,92,246,0.85)" font-family="monospace">Civitai ✦</text>
+
+                                <rect x="244" y="124" width="52" height="16" rx="8" fill="rgba(249,171,0,0.09)" stroke="rgba(249,171,0,0.25)" stroke-width="0.8"/>
+                                <text x="253" y="135" font-size="7.5" fill="rgba(249,171,0,0.85)" font-family="monospace">Colab ▶</text>
+
+                                <!-- Bottom label -->
+                                <text x="30" y="175" font-size="8" fill="rgba(255,255,255,0.18)" font-family="monospace">AI IMAGE GENERATION MASTERCLASS</text>
+                            </svg>
+                            <div class="coming-soon-badge" style="background: linear-gradient(135deg,#00E5FF,#8B5CF6); color:#0A0F1D; font-weight:800;">Launching Dec 1</div>
+                        </div>
+                        <div class="service-body">
+                            <div class="service-category">COURSE PREVIEW</div>
+                            <div class="service-bottom">
+                                <h3 class="service-title" style="font-size: 1.25rem;">Unlimited Image Generation Masterclass</h3>
+
+                                <!-- Countdown -->
+                                <div class="countdown-row" id="countdownRow">
+                                    <div class="countdown-block"><span class="countdown-num" id="cd-days">--</span><span class="countdown-label">Days</span></div>
+                                    <div class="countdown-block"><span class="countdown-num" id="cd-hours">--</span><span class="countdown-label">Hrs</span></div>
+                                    <div class="countdown-block"><span class="countdown-num" id="cd-mins">--</span><span class="countdown-label">Min</span></div>
+                                    <div class="countdown-block"><span class="countdown-num" id="cd-secs">--</span><span class="countdown-label">Sec</span></div>
+                                </div>
+
+                                <button class="btn-view-course" onclick="document.getElementById('courseModal').style.display='block'">
+                                    <i class="fas fa-list-ul"></i> View Course Content
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Course 2: Animation with AI -->
+                    <article class="service-card coming-soon-card">
+                        <div class="academy-svg-wrap">
+                            <!--
+                                SVG: Education / class theme for AI animation course
+                                Shows a chalkboard/whiteboard with motion timeline, play button,
+                                keyframe diamonds, and a teacher pointer
+                            -->
+                            <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#8B5CF6"/>
+                                        <stop offset="100%" stop-color="#EC4899"/>
+                                    </linearGradient>
+                                    <radialGradient id="glow2" cx="55%" cy="50%" r="45%">
+                                        <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.13"/>
+                                        <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/>
+                                    </radialGradient>
+                                </defs>
+
+                                <rect width="400" height="180" fill="#080E1E"/>
+                                <circle cx="220" cy="90" r="90" fill="url(#glow2)"/>
+
+                                <!-- Whiteboard / screen -->
+                                <rect x="20" y="20" width="260" height="130" rx="6" fill="#0f1a30" stroke="rgba(139,92,246,0.3)" stroke-width="1.5"/>
+                                <!-- Board header bar -->
+                                <rect x="20" y="20" width="260" height="14" rx="6" fill="rgba(139,92,246,0.15)"/>
+                                <circle cx="32" cy="27" r="3" fill="rgba(236,72,153,0.5)"/>
+                                <circle cx="44" cy="27" r="3" fill="rgba(249,171,0,0.5)"/>
+                                <circle cx="56" cy="27" r="3" fill="rgba(16,185,129,0.5)"/>
+                                <text x="118" y="32" font-size="7" fill="rgba(255,255,255,0.3)" font-family="monospace" text-anchor="middle">AI ANIMATION STUDIO</text>
+
+                                <!-- Timeline ruler -->
+                                <rect x="30" y="130" width="240" height="12" rx="3" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+                                <!-- Tick marks -->
+                                <g stroke="rgba(255,255,255,0.2)" stroke-width="0.8">
+                                    <line x1="50" y1="130" x2="50" y2="142"/><line x1="90" y1="130" x2="90" y2="142"/>
+                                    <line x1="130" y1="130" x2="130" y2="142"/><line x1="170" y1="130" x2="170" y2="142"/>
+                                    <line x1="210" y1="130" x2="210" y2="142"/><line x1="250" y1="130" x2="250" y2="142"/>
+                                </g>
+                                <!-- Playhead -->
+                                <line x1="110" y1="124" x2="110" y2="145" stroke="#8B5CF6" stroke-width="1.5"/>
+                                <polygon points="106,122 114,122 110,126" fill="#8B5CF6"/>
+
+                                <!-- Keyframe diamonds on timeline -->
+                                <g fill="#EC4899">
+                                    <polygon points="50,136 54,132 58,136 54,140"/>
+                                    <polygon points="130,136 134,132 138,136 134,140"/>
+                                    <polygon points="210,136 214,132 218,136 214,140"/>
+                                </g>
+                                <g fill="rgba(0,229,255,0.7)">
+                                    <polygon points="90,136 94,132 98,136 94,140"/>
+                                    <polygon points="170,136 174,132 178,136 174,140"/>
+                                    <polygon points="250,136 254,132 258,136 254,140"/>
+                                </g>
+
+                                <!-- Motion curve on board -->
+                                <path d="M35 110 C60 110, 80 48, 110 48 S160 110, 190 110 S240 48, 270 48" fill="none" stroke="url(#g2)" stroke-width="2" opacity="0.7"/>
+
+                                <!-- Play button circle on board -->
+                                <circle cx="150" cy="80" r="22" fill="rgba(139,92,246,0.12)" stroke="rgba(139,92,246,0.4)" stroke-width="1.5"/>
+                                <polygon points="143,70 165,80 143,90" fill="url(#g2)" opacity="0.9"/>
+
+                                <!-- Frame markers (small squares above timeline) -->
+                                <g fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5">
+                                    <rect x="34" y="118" width="10" height="10" rx="1"/>
+                                    <rect x="46" y="118" width="10" height="10" rx="1"/>
+                                    <rect x="58" y="118" width="10" height="10" rx="1"/>
+                                    <rect x="70" y="118" width="10" height="10" rx="1"/>
+                                    <rect x="82" y="118" width="10" height="10" rx="1"/>
+                                    <rect x="94" y="118" width="10" height="10" rx="1"/>
+                                    <rect x="106" y="118" width="10" height="10" rx="1" fill="rgba(139,92,246,0.25)" stroke="rgba(139,92,246,0.5)"/>
+                                    <rect x="118" y="118" width="10" height="10" rx="1"/>
+                                    <rect x="130" y="118" width="10" height="10" rx="1"/>
+                                </g>
+
+                                <!-- Teacher pointer (right side, outside board) -->
+                                <line x1="296" y1="150" x2="284" y2="80" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="296" cy="153" r="4" fill="rgba(255,255,255,0.3)"/>
+                                <circle cx="283" cy="78" r="3" fill="#EC4899" opacity="0.9"/>
+
+                                <!-- Right side info chips -->
+                                <rect x="306" y="38" width="78" height="16" rx="8" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.25)" stroke-width="0.8"/>
+                                <text x="316" y="49" font-size="7.5" fill="rgba(139,92,246,0.85)" font-family="monospace">AI Animation</text>
+
+                                <rect x="314" y="60" width="62" height="16" rx="8" fill="rgba(236,72,153,0.1)" stroke="rgba(236,72,153,0.25)" stroke-width="0.8"/>
+                                <text x="322" y="71" font-size="7.5" fill="rgba(236,72,153,0.85)" font-family="monospace">Keyframing</text>
+
+                                <rect x="318" y="82" width="54" height="16" rx="8" fill="rgba(0,229,255,0.09)" stroke="rgba(0,229,255,0.2)" stroke-width="0.8"/>
+                                <text x="326" y="93" font-size="7.5" fill="rgba(0,229,255,0.75)" font-family="monospace">Motion AI</text>
+
+                                <!-- Easel legs at bottom of board -->
+                                <line x1="80" y1="150" x2="60" y2="168" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+                                <line x1="200" y1="150" x2="220" y2="168" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+                                <line x1="140" y1="150" x2="140" y2="172" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+
+                                <text x="30" y="176" font-size="8" fill="rgba(255,255,255,0.15)" font-family="monospace">AI ANIMATION MODELS COURSE</text>
+                            </svg>
+                            <div class="coming-soon-badge">Coming Soon</div>
+                        </div>
+                        <div class="service-body">
+                            <div class="service-category">COURSE PREVIEW</div>
+                            <div class="service-bottom">
+                                <h3 class="service-title" style="font-size: 1.25rem;">Animation with AI Models</h3>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <p>Empowering the creative future through the seamless integration of art and artificial intelligence.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="index.html#services">Creations &amp; Programs</a></li>
+                        <li><a href="academy.html">Academy</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="index.html#portfolio">Portfolio</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Connect With Us</h4>
+                    <p>Join our growing community across all platforms.</p>
+                    <div class="social-icons">
+                        <a href="https://t.me/rekebotai" class="social-icon telegram" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="https://instagram.com/rekebotai" class="social-icon instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://facebook.com/rekebotai" class="social-icon facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://youtube.com/@rekebotai" class="social-icon youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://tiktok.com/@rekebotai" class="social-icon tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <ul class="footer-contact-list" style="list-style: none;">
+                        <li style="margin-bottom: 0.8rem; color: var(--color-text-muted);"><i class="fas fa-map-marker-alt" style="margin-right: 10px; color: var(--color-accent);"></i> Addis Ababa, Ethiopia</li>
+                        <li style="margin-bottom: 0.8rem; color: var(--color-text-muted);"><i class="fas fa-envelope" style="margin-right: 10px; color: var(--color-accent);"></i> <a href="mailto:info@rekebot.com.et" style="color: var(--color-text-muted);">info@rekebot.com.et</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Rekebot Agency. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close course modal on backdrop click
+        document.getElementById('courseModal').addEventListener('click', function (e) {
+            if (e.target === this) this.style.display = 'none';
+        });
+
+        // ── Countdown to December 1, 2026 ───────────────────────────────
+        (function () {
+            const target = new Date('2026-12-01T00:00:00+03:00').getTime();
+            const dEl = document.getElementById('cd-days');
+            const hEl = document.getElementById('cd-hours');
+            const mEl = document.getElementById('cd-mins');
+            const sEl = document.getElementById('cd-secs');
+            function pad(n) { return String(n).padStart(2, '0'); }
+            function tick() {
+                const diff = target - Date.now();
+                if (diff <= 0) {
+                    dEl.textContent = hEl.textContent = mEl.textContent = sEl.textContent = '00';
+                    return;
+                }
+                dEl.textContent = pad(Math.floor(diff / 86400000));
+                hEl.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+                mEl.textContent = pad(Math.floor((diff % 3600000) / 60000));
+                sEl.textContent = pad(Math.floor((diff % 60000) / 1000));
+            }
+            tick();
+            setInterval(tick, 1000);
+        }());
+    </script>
+</body>
+
+</html>

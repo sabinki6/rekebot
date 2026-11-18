@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekebot</title>
+    <meta name="description"
+        content="Rekebot is an AI-powered creative agency offering cutting-edge web development, graphics design, branding, and comprehensive AI tool training through our Academy.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="serviceModal" class="service-modal">
+        <div class="service-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2 id="modalTitle">Service Title</h2>
+                <div class="service-category" id="modalCategory" style="margin-bottom: 0;">CATEGORY</div>
+            </div>
+            <div class="modal-body" id="modalBody">
+
+            </div>
+            <div class="modal-footer">
+                <a href="#contact" class="btn-primary" onclick="closeServiceModal(); selectTopicFromModal()">Leave
+                    Feedback / Inquire <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Artwork Detail Modal -->
+    <div id="artworkModal" class="service-modal">
+        <div class="service-modal-content" style="max-width: 900px;">
+            <span class="close-modal close-art-modal">&times;</span>
+            <div class="modal-header">
+                <h2 id="artModalTitle">Artwork Title</h2>
+                <div class="service-category" id="artModalCategory">MODEL &amp; STYLE</div>
+            </div>
+            <div class="modal-body" id="artModalBody">
+                <!-- Dynamically populated -->
+            </div>
+            <div class="modal-footer" id="artModalFooter">
+                <!-- Action Buttons -->
+            </div>
+        </div>
+    </div>
+
+    <div class="video-container">
+        <video autoplay muted loop playsinline class="bg-video">
+            <source src="background.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="Rekebot Logo">
+            </a>
+
+            <div class="nav-links">
+                <a href="#services" class="nav-link">Creations & Programs</a>
+                <a href="academy.html" class="nav-link">Academy</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#contact" class="btn-primary-sm">Leave Feedback</a>
+            </div>
+
+
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="badge">Powered By Open-Source AI</div>
+            <h1 class="hero-title">Unleash Your Creativity.<br><span class="highlight">Build Your IP.</span></h1>
+            <p class="hero-subtitle">
+                From original comic books and digital ambassadors to board games and AI-generated art — we help visionaries
+                create, own, and grow their intellectual property using the full power of open-source AI.
+            </p>
+            <div class="hero-actions">
+                <a href="#services" class="btn-primary">Explore Creations <i class="fas fa-arrow-right"></i></a>
+                <a href="academy.html" class="btn-secondary">Join the Academy</a>
+            </div>
+        </div>
+    </header>
+
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge">Creations & Initiatives</div>
+                <h2>Our <span class="highlight">Creations & Programs</span></h2>
+                <p>Innovative digital initiatives, immersive storytelling, and interactive experiences.</p>
+            </div>
+
+            <div class="service-grid">
+
+                <!-- 1. Digital Ambassadors Program -->
+                <article class="service-card cat-innov" onclick="openServiceModal('digital-ambassadors')">
+                    <div class="service-img-container">
+                        <img src="digital-ambassadors.svg" alt="Digital Ambassadors Program">
+                        <div class="coming-soon-badge">Program</div>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-category">INNOVATION & COMMUNITY</div>
+                        <div class="service-bottom">
+                            <h3 class="service-title">Digital Ambassadors Program</h3>
+                            <div class="service-meta-box">
+                                <span class="service-date"><i class="fas fa-users"></i> Community</span>
+                                <span class="card-quote-link">View Details <i class="fas fa-chevron-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="content-digital-ambassadors" style="display: none;">
+                        <p>The <strong>Digital Ambassadors Program</strong> is our flagship initiative empowering youth,
+                            digital creators, and visionary brands through AI-powered virtual representation and
+                            next-generation storytelling. We train and deploy culturally grounded digital ambassadors
+                            who represent communities and brands 24/7 across modern digital landscapes.</p>
+                        <div class="modal-gallery">
+                            <img src="digital-ambassadors.svg" alt="Digital Ambassadors Program Showcase">
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 2. Comic Books -->
+                <article class="service-card cat-illustration" onclick="openServiceModal('comic-books')">
+                    <div class="service-img-container" style="background: #14051A;">
+                        <img src="comics.png" alt="Abew Comics" style="object-fit: contain;">
+                        <div class="coming-soon-badge" style="background: #10B981; color: #fff;">Publications</div>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-category">GRAPHIC NOVELS & LORE</div>
+                        <div class="service-bottom">
+                            <h3 class="service-title">Comic Books</h3>
+                            <div class="service-meta-box">
+                                <span class="service-date"><i class="fas fa-book-open"></i> Series</span>
+                                <span class="card-quote-link">Coming Soon <i class="fas fa-clock"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="content-comic-books" style="display: none;">
+                        <p>Original graphic novels and sci-fi comic series brought to life through the convergence of
+                            evocative narratives and open-source generative art. With meticulous character consistency,
+                            richly layered folklore, and cinematic panels, our comics deliver unforgettable visual sagas
+                            in digital and collectible physical editions.</p>
+                        <div class="modal-gallery">
+                            <img src="comics.png" alt="Abew Comics Logo" style="background: #14051A; object-fit: contain;">
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3. Board Games -->
+                <article class="service-card cat-video" onclick="openServiceModal('board-games')">
+                    <div class="service-img-container">
+                        <img src="board-games.svg" alt="Board Games">
+                        <div class="coming-soon-badge" style="background: #8B5CF6; color: #fff;">Tabletop</div>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-category">TABLETOP & GAMING</div>
+                        <div class="service-bottom">
+                            <h3 class="service-title">Board Games</h3>
+                            <div class="service-meta-box">
+                                <span class="service-date"><i class="fas fa-dice"></i> Tabletop</span>
+                                <span class="card-quote-link">Coming Soon <i class="fas fa-clock"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="content-board-games" style="display: none;">
+                        <p>Immersive, highly replayable tabletop board games and card games that merge deep strategic
+                            mechanics with stunning AI-crafted game assets. From bespoke cards and handcrafted game
+                            boards to rich thematic lore, our games are built to bring friends and families together for
+                            unforgettable game nights.</p>
+                        <div class="modal-gallery">
+                            <img src="board-games.svg" alt="Board Games Design Preview">
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI <span class="highlight">Artwork</span></h2>
+                <p>A glimpse into our creative process and prompt engineering capabilities.</p>
+            </div>
+
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" aria-label="Previous artwork"><i
+                        class="fas fa-chevron-left"></i></button>
+
+                <div class="artwork-carousel" id="artworkCarousel">
+
+                    <!-- Art 1 -->
+                    <div class="artwork-card">
+                        <div class="artwork-image-container" onclick="openArtworkModal(1)" style="cursor: pointer;" title="Click to view details">
+                            <img src="1.png" alt="Reflected Shard - Monochrome Fashion Portrait" class="artwork-img">
+                        </div>
+                        <div class="artwork-content">
+                            <div class="ai-tag"><i class="fas fa-wand-magic-sparkles"></i> Flux.1 Dev</div>
+                            <h3 class="artwork-title">Reflected Shard</h3>
+                            <p class="artwork-prompt">"Monochrome editorial portrait of an elegant woman reflected inside a jagged geometric broken mirror shard held delicately in hand, dramatic chiaroscuro studio lighting, glossy lips, 35mm film grain, avant-garde beauty photography."</p>
+                            <div class="artwork-actions">
+                                <button class="btn-like" data-likes="342"><i class="far fa-heart"></i><span class="like-count">342</span></button>
+                                <button class="btn-details-modal" onclick="openArtworkModal(1)"><i class="fas fa-info-circle"></i> Details</button>
+                                <a href="https://instagram.com/rekebotai" class="btn-instagram" target="_blank" rel="noopener noreferrer" aria-label="Rekebot Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Art 2 -->
+                    <div class="artwork-card">
+                        <div class="artwork-image-container" onclick="openArtworkModal(2)" style="cursor: pointer;" title="Click to view details">
+                            <img src="2.png" alt="Transit to Elysium - Futuristic Train Portrait" class="artwork-img">
+                        </div>
+                        <div class="artwork-content">
+                            <div class="ai-tag"><i class="fas fa-wand-magic-sparkles"></i> Midjourney v6</div>
+                            <h3 class="artwork-title">Transit to Elysium</h3>
+                            <p class="artwork-prompt">"Cinematic portrait of an elegant Black woman with over-ear headphones gazing out of a passenger train window, speeding past an otherworldly bioluminescent blue tropical jungle with oversized banana leaves."</p>
+                            <div class="artwork-actions">
+                                <button class="btn-like" data-likes="518"><i class="far fa-heart"></i><span class="like-count">518</span></button>
+                                <button class="btn-details-modal" onclick="openArtworkModal(2)"><i class="fas fa-info-circle"></i> Details</button>
+                                <a href="https://instagram.com/rekebotai" class="btn-instagram" target="_blank" rel="noopener noreferrer" aria-label="Rekebot Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Art 3 -->
+                    <div class="artwork-card">
+                        <div class="artwork-image-container" onclick="openArtworkModal(3)" style="cursor: pointer;" title="Click to view details">
+                            <img src="3.png" alt="Solarium Haute Couture - Editorial Fashion" class="artwork-img">
+                        </div>
+                        <div class="artwork-content">
+                            <div class="ai-tag"><i class="fas fa-cube"></i> Flux.1 Pro</div>
+                            <h3 class="artwork-title">Solarium Couture</h3>
+                            <p class="artwork-prompt">"High-fashion editorial shot of a statuesque Black woman model in futuristic mirrored sunglasses and a sleek white two-piece outfit, walking through a soaring sunlit glass conservatory atrium with giant tropical palms."</p>
+                            <div class="artwork-actions">
+                                <button class="btn-like" data-likes="892"><i class="far fa-heart"></i><span class="like-count">892</span></button>
+                                <button class="btn-details-modal" onclick="openArtworkModal(3)"><i class="fas fa-info-circle"></i> Details</button>
+                                <a href="https://instagram.com/rekebotai" class="btn-instagram" target="_blank" rel="noopener noreferrer" aria-label="Rekebot Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Art 4 -->
+                    <div class="artwork-card">
+                        <div class="artwork-image-container" onclick="openArtworkModal(4)" style="cursor: pointer;" title="Click to view details">
+                            <img src="4.png" alt="Crimson Slit - Studio Beauty Portrait" class="artwork-img">
+                        </div>
+                        <div class="artwork-content">
+                            <div class="ai-tag"><i class="fas fa-bolt"></i> SDXL</div>
+                            <h3 class="artwork-title">Crimson Slit</h3>
+                            <p class="artwork-prompt">"Dramatic studio portrait of a dark-skinned woman with a sculpted high bun, immersed in shadows with a sharp horizontal slit of crimson light cutting across her eyes, deep red monochromatic background, intense gaze, chiaroscuro."</p>
+                            <div class="artwork-actions">
+                                <button class="btn-like" data-likes="120"><i class="far fa-heart"></i><span class="like-count">120</span></button>
+                                <button class="btn-details-modal" onclick="openArtworkModal(4)"><i class="fas fa-info-circle"></i> Details</button>
+                                <a href="https://instagram.com/rekebotai" class="btn-instagram" target="_blank" rel="noopener noreferrer" aria-label="Rekebot Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Art 5 -->
+                    <div class="artwork-card">
+                        <div class="artwork-image-container" onclick="openArtworkModal(5)" style="cursor: pointer;" title="Click to view details">
+                            <img src="5.png" alt="Midnight Luminescence - Starlit Floral Field" class="artwork-img">
+                        </div>
+                        <div class="artwork-content">
+                            <div class="ai-tag"><i class="fas fa-wand-magic-sparkles"></i> Flux.1 Dev</div>
+                            <h3 class="artwork-title">Midnight Luminescence</h3>
+                            <p class="artwork-prompt">"Dreamlike nocturnal fashion photograph of an elegant dark-skinned model in a black slip gown walking gracefully through an expansive field of glowing bioluminescent blue flowers beneath a starlit galaxy sky, soft ethereal atmosphere."</p>
+                            <div class="artwork-actions">
+                                <button class="btn-like" data-likes="404"><i class="far fa-heart"></i><span class="like-count">404</span></button>
+                                <button class="btn-details-modal" onclick="openArtworkModal(5)"><i class="fas fa-info-circle"></i> Details</button>
+                                <a href="https://instagram.com/rekebotai" class="btn-instagram" target="_blank" rel="noopener noreferrer" aria-label="Rekebot Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Art 6 -->
+                    <div class="artwork-card">
+                        <div class="artwork-image-container" onclick="openArtworkModal(6)" style="cursor: pointer;" title="Click to view details">
+                            <img src="6.png" alt="Azure Grove & Sunbeam - Summer Editorial" class="artwork-img">
+                        </div>
+                        <div class="artwork-content">
+                            <div class="ai-tag"><i class="fas fa-wand-magic-sparkles"></i> Midjourney v6</div>
+                            <h3 class="artwork-title">Azure Grove</h3>
+                            <p class="artwork-prompt">"Striking color-contrast fashion editorial of a Black woman in a flowing sun-yellow striped dress walking on a pale sand pathway flanked by a surreal grove of vibrant cerulean-blue trees and shrubs, bright natural daylight, vogue aesthetic."</p>
+                            <div class="artwork-actions">
+                                <button class="btn-like" data-likes="999"><i class="far fa-heart"></i><span class="like-count">999</span></button>
+                                <button class="btn-details-modal" onclick="openArtworkModal(6)"><i class="fas fa-info-circle"></i> Details</button>
+                                <a href="https://instagram.com/rekebotai" class="btn-instagram" target="_blank" rel="noopener noreferrer" aria-label="Rekebot Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Art 7 -->
+                    <div class="artwork-card">
+                        <div class="artwork-image-container" onclick="openArtworkModal(7)" style="cursor: pointer;" title="Click to view details">
+                            <img src="7.png" alt="Beyond the Canvas - Heterochromia Painting" class="artwork-img">
+                        </div>
+                        <div class="artwork-content">
+                            <div class="ai-tag"><i class="fas fa-paint-brush"></i> Qwen-Image Edit</div>
+                            <h3 class="artwork-title">Beyond the Canvas</h3>
+                            <p class="artwork-prompt">"Fine art mixed-media painting of a young Black woman with heterochromia eyes peering through a torn white textured canvas, hand gently holding the torn edge, delicate ink botanical sketches, expressive hyper-detailed realism."</p>
+                            <div class="artwork-actions">
+                                <button class="btn-like" data-likes="256"><i class="far fa-heart"></i><span class="like-count">256</span></button>
+                                <button class="btn-details-modal" onclick="openArtworkModal(7)"><i class="fas fa-info-circle"></i> Details</button>
+                                <a href="https://instagram.com/rekebotai" class="btn-instagram" target="_blank" rel="noopener noreferrer" aria-label="Rekebot Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Art 8 -->
+                    <div class="artwork-card">
+                        <div class="artwork-image-container" onclick="openArtworkModal(8)" style="cursor: pointer;" title="Click to view details">
+                            <img src="8.png" alt="Blind Vision - Avant-Garde Editorial" class="artwork-img">
+                        </div>
+                        <div class="artwork-content">
+                            <div class="ai-tag"><i class="fas fa-microchip"></i> SD 3</div>
+                            <h3 class="artwork-title">Blind Vision</h3>
+                            <p class="artwork-prompt">"Avant-garde monochrome fashion portrait of a model with blunt platinum white bangs, wearing a black ribbon blindfold with bold red 'EYES' typography across the eyes, dark berry lips, high-contrast minimalist studio aesthetic."</p>
+                            <div class="artwork-actions">
+                                <button class="btn-like" data-likes="645"><i class="far fa-heart"></i><span class="like-count">645</span></button>
+                                <button class="btn-details-modal" onclick="openArtworkModal(8)"><i class="fas fa-info-circle"></i> Details</button>
+                                <a href="https://instagram.com/rekebotai" class="btn-instagram" target="_blank" rel="noopener noreferrer" aria-label="Rekebot Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Art 9 -->
+                    <div class="artwork-card">
+                        <div class="artwork-image-container" onclick="openArtworkModal(9)" style="cursor: pointer;" title="Click to view details">
+                            <img src="9.png" alt="Golden Blossom Moonlight - Afro-Surrealist Fantasy" class="artwork-img">
+                        </div>
+                        <div class="artwork-content">
+                            <div class="ai-tag"><i class="fas fa-moon"></i> HunyuanDiT</div>
+                            <h3 class="artwork-title">Moonlit Blossom</h3>
+                            <p class="artwork-prompt">"Enchanted afro-surrealist fantasy portrait of an African woman with afro hair adorned with delicate gold flowers, wearing an embroidered golden gown, looking over her shoulder in a moonlit forest with glowing golden blossoms and fireflies."</p>
+                            <div class="artwork-actions">
+                                <button class="btn-like" data-likes="812"><i class="far fa-heart"></i><span class="like-count">812</span></button>
+                                <button class="btn-details-modal" onclick="openArtworkModal(9)"><i class="fas fa-info-circle"></i> Details</button>
+                                <a href="https://instagram.com/rekebotai" class="btn-instagram" target="_blank" rel="noopener noreferrer" aria-label="Rekebot Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-btn next" aria-label="Next artwork"><i
+                        class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our <span class="highlight">Insights</span></h2>
+                <p>Stay updated with the latest trends and breakthroughs in open-source AI and marketing.</p>
+            </div>
+
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-image-container">
+                        <div class="blog-category">Industry News</div>
+                        <img src="blog-ai.png" alt="AI in Marketing" class="blog-img">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> Feb 2026</span>
+                            <span><i class="far fa-clock"></i> 5 min read</span>
+                        </div>
+                        <h3 class="blog-title">AI Is Upending Marketing on Two Fronts</h3>
+                        <p class="blog-excerpt">
+                            Artificial intelligence is driving two overlapping shifts that are reshaping marketing:
+                            conversational AI is displacing traditional search, moving us from SEO to Generative Engine
+                            Optimization (GEO). Secondly, AI agents are beginning to act as buyers themselves. As
+                            algorithms evaluate options and transact, marketing must adapt to a world in which the
+                            customer may be a machine.
+                        </p>
+                        <a href="blog.html#marketing-two-fronts" class="blog-btn">Read Full Article <i
+                                class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image-container">
+                        <div class="blog-category">Technology</div>
+                        <img src="blog-opensource.png" alt="Open Source AI Lock" class="blog-img">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> Mar 2026</span>
+                            <span><i class="far fa-clock"></i> 5 min read</span>
+                        </div>
+                        <h3 class="blog-title">The Future of AI is Unapologetically Open-Source</h3>
+                        <p class="blog-excerpt">
+                            When we launched Rekebot, we made a conscious decision: we build, generate, and execute
+                            using Open-Source Artificial Intelligence. It is not just about cost-efficiency; it is about
+                            transparency, limitless innovation, and refusing to be trapped inside walled digital
+                            corporate gardens. Read why embracing open-weights is key to true creative freedom.
+                        </p>
+                        <a href="blog.html#open-source-future" class="blog-btn">Read Full Article <i
+                                class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Feedback Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header text-center" style="margin-bottom: 4rem;">
+                <div class="badge">Feedback & Inquiries</div>
+                <h2 class="section-title">Leave Your <span class="highlight">Feedback</span></h2>
+                <p>Have questions, ideas, or feedback? Send us a message and it will be delivered directly to our
+                    Telegram bot.</p>
+            </div>
+
+            <div class="contact-container">
+                <form id="feedbackForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="fullName"><i class="fas fa-user"
+                                style="color: var(--color-accent); margin-right: 6px;"></i> Full Name</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required
+                            autocomplete="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactInfo"><i class="fas fa-envelope"
+                                style="color: var(--color-accent); margin-right: 6px;"></i> Email or Telegram
+                            Handle</label>
+                        <input type="text" id="contactInfo" name="contactInfo"
+                            placeholder="e.g. name@example.com or @username" required autocomplete="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="topic"><i class="fas fa-tag"
+                                style="color: var(--color-accent); margin-right: 6px;"></i> Topic / Interest</label>
+                        <select id="topic" name="topic" required>
+                            <option value="General Feedback" selected>General Feedback</option>
+                            <option value="Digital Ambassadors Program">Digital Ambassadors Program</option>
+                            <option value="Comic Books">Comic Books</option>
+                            <option value="Board Games">Board Games</option>
+                            <option value="Academy & Courses">Academy & Courses</option>
+                            <option value="Partnership & Collaboration">Partnership & Collaboration</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message"><i class="fas fa-comment-dots"
+                                style="color: var(--color-accent); margin-right: 6px;"></i> Your Feedback /
+                            Message</label>
+                        <textarea id="message" name="message" rows="5"
+                            placeholder="Share your feedback, ideas, or questions with us..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary" id="submitFeedbackBtn">
+                        <span>Send Feedback</span>
+                        <i class="fas fa-paper-plane" style="margin-left: 10px;"></i>
+                    </button>
+
+                    <div id="formStatus" class="form-status"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <p>Empowering the creative future through the seamless integration of art and artificial
+                        intelligence.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="#services">Creations & Programs</a></li>
+                        <li><a href="academy.html">Academy</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-social">
+                    <h4>Connect With Us</h4>
+                    <p>Join our growing community across all platforms.</p>
+                    <div class="social-icons">
+                        <a href="https://t.me/rekebotai" class="social-icon telegram" target="_blank"
+                            rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="https://instagram.com/rekebotai" class="social-icon instagram" target="_blank"
+                            rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://facebook.com/rekebotai" class="social-icon facebook" target="_blank"
+                            rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://youtube.com/@rekebotai" class="social-icon youtube" target="_blank"
+                            rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://tiktok.com/@rekebotai" class="social-icon tiktok" target="_blank"
+                            rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <ul class="footer-contact-list" style="list-style: none;">
+                        <li style="margin-bottom: 0.8rem; color: var(--color-text-muted);"><i
+                                class="fas fa-map-marker-alt"
+                                style="margin-right: 10px; color: var(--color-accent);"></i> Addis Ababa, Ethiopia</li>
+                        <li style="margin-bottom: 0.8rem; color: var(--color-text-muted);"><i class="fas fa-envelope"
+                                style="margin-right: 10px; color: var(--color-accent);"></i> <a
+                                href="mailto:info@rekebot.com.et"
+                                style="color: var(--color-text-muted);">info@rekebot.com.et</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Rekebot Agency. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Simple sticky navbar effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Like Button Functionality
+        const likeBtns = document.querySelectorAll('.btn-like');
+        likeBtns.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                this.classList.toggle('liked');
+                const heartIcon = this.querySelector('i');
+                const likeCountSpan = this.querySelector('.like-count');
+                let currentLikes = parseInt(this.getAttribute('data-likes'));
+
+                if (this.classList.contains('liked')) {
+                    heartIcon.classList.remove('far');
+                    heartIcon.classList.add('fas');
+                    currentLikes++;
+                } else {
+                    heartIcon.classList.remove('fas');
+                    heartIcon.classList.add('far');
+                    currentLikes--;
+                }
+
+                this.setAttribute('data-likes', currentLikes);
+                likeCountSpan.textContent = currentLikes;
+            });
+        });
+
+        // Service Modal Functionality
+        const serviceModal = document.getElementById('serviceModal');
+        const closeModalBtn = document.querySelector('.close-modal');
+        let currentActiveService = '';
+
+        window.openServiceModal = function (serviceId) {
+            currentActiveService = serviceId;
+            const card = document.querySelector(`[onclick="openServiceModal('${serviceId}')"]`);
+            if (!card) return;
+            const titleEl = card.querySelector('.service-title');
+            const categoryEl = card.querySelector('.service-category');
+            const contentEl = card.querySelector(`#content-${serviceId}`);
+
+            const title = titleEl ? titleEl.innerText : 'Featured Creation';
+            const category = categoryEl ? categoryEl.innerText : 'CREATION';
+            const contentHTML = contentEl ? contentEl.innerHTML : '';
+
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalCategory').innerText = category;
+
+            // Extract the color class from the card and apply to modal
+            const colorClass = Array.from(card.classList).find(c => c.startsWith('cat-'));
+            document.getElementById('modalCategory').className = `service-category ${colorClass || ''}`;
+
+            document.getElementById('modalBody').innerHTML = contentHTML;
+
+            serviceModal.style.display = "block";
+            document.body.style.overflow = "hidden"; // Prevent background scrolling
+        };
+
+        window.closeServiceModal = function () {
+            serviceModal.style.display = "none";
+            document.body.style.overflow = "auto";
+        };
+
+        if (closeModalBtn) {
+            closeModalBtn.onclick = function () {
+                closeServiceModal();
+            }
+        }
+
+        window.addEventListener('click', function (event) {
+            if (event.target == serviceModal) {
+                closeServiceModal();
+            }
+        });
+
+        // Carousel Functionality
+        const carousel = document.getElementById('artworkCarousel');
+        const prevBtn = document.querySelector('.carousel-btn.prev');
+        const nextBtn = document.querySelector('.carousel-btn.next');
+        const scrollStep = 350;
+
+        if (nextBtn && prevBtn && carousel) {
+            let autoPlay = setInterval(() => {
+                if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10) {
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    carousel.scrollBy({ left: scrollStep, behavior: 'smooth' });
+                }
+            }, 3000);
+
+            nextBtn.addEventListener('click', () => {
+                clearInterval(autoPlay);
+                carousel.scrollBy({ left: scrollStep, behavior: 'smooth' });
+            });
+
+            prevBtn.addEventListener('click', () => {
+                clearInterval(autoPlay);
+                carousel.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+            });
+        }
+
+        // ==========================================
+        // TELEGRAM BOT CONFIGURATION
+        // ==========================================
+        // Paste your Telegram Bot Token and Chat ID below:
+        // 1. Get BOT_TOKEN from @BotFather on Telegram
+        // 2. Get your numeric CHAT_ID from @userinfobot or your bot chat
+        const TELEGRAM_CONFIG = {
+            botToken: 'YOUR_BOT_TOKEN_HERE',
+            chatId: 'YOUR_CHAT_ID_HERE'
+        };
+
+        const feedbackForm = document.getElementById('feedbackForm');
+        const formStatus = document.getElementById('formStatus');
+        const submitBtn = document.getElementById('submitFeedbackBtn');
+
+        function escapeTelegramHtml(text) {
+            if (!text) return '';
+            return String(text)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+
+        if (feedbackForm) {
+            feedbackForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Validate credentials
+                if (!TELEGRAM_CONFIG.botToken || TELEGRAM_CONFIG.botToken === 'YOUR_BOT_TOKEN_HERE' ||
+                    !TELEGRAM_CONFIG.chatId || TELEGRAM_CONFIG.chatId === 'YOUR_CHAT_ID_HERE') {
+                    formStatus.className = 'form-status error';
+                    formStatus.innerHTML = '⚠️ <strong>Configuration Needed:</strong> Please set your <code>botToken</code> and <code>chatId</code> in the script at the bottom of <code>index.html</code> to receive messages in Telegram.';
+                    formStatus.style.display = 'block';
+                    return;
+                }
+
+                // Show loading status & disable button
+                formStatus.className = 'form-status';
+                formStatus.innerText = 'Sending your feedback to Telegram...';
+                formStatus.style.display = 'block';
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<span>Sending...</span> <i class="fas fa-spinner fa-spin" style="margin-left: 10px;"></i>';
+                }
+
+                const formData = new FormData(this);
+                const fullName = formData.get('fullName') || 'Anonymous';
+                const contactInfo = formData.get('contactInfo') || 'Not provided';
+                const topic = formData.get('topic') || 'General Feedback';
+                const message = formData.get('message') || '';
+
+                // Construct Telegram message in HTML parse mode for reliable formatting
+                const telegramMessage =
+                    `📬 <b>New Feedback Received - Rekebot</b>\n\n` +
+                    `👤 <b>Name:</b> ${escapeTelegramHtml(fullName)}\n` +
+                    `📞 <b>Contact:</b> ${escapeTelegramHtml(contactInfo)}\n` +
+                    `📌 <b>Topic:</b> ${escapeTelegramHtml(topic)}\n\n` +
+                    `💬 <b>Message:</b>\n${escapeTelegramHtml(message)}\n\n` +
+                    `⏰ <i>Submitted: ${new Date().toLocaleString()}</i>`;
+
+                const url = `https://api.telegram.org/bot${TELEGRAM_CONFIG.botToken}/sendMessage`;
+
+                fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CONFIG.chatId,
+                        text: telegramMessage,
+                        parse_mode: 'HTML'
+                    })
+                })
+                    .then(async response => {
+                        const result = await response.json();
+                        if (response.ok && result.ok) {
+                            formStatus.className = 'form-status success';
+                            formStatus.innerHTML = '✅ <strong>Thank you!</strong> Your feedback has been sent directly to our Telegram bot.';
+                            feedbackForm.reset();
+                        } else {
+                            const errorMsg = (result && result.description) ? result.description : 'Failed to send message';
+                            throw new Error(errorMsg);
+                        }
+                    })
+                    .catch(error => {
+                        formStatus.className = 'form-status error';
+                        formStatus.innerHTML = `❌ <strong>Error:</strong> ${escapeTelegramHtml(error.message)}.<br><small>Please verify your Telegram Bot Token & Chat ID.</small>`;
+                    })
+                    .finally(() => {
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = '<span>Send Feedback</span> <i class="fas fa-paper-plane" style="margin-left: 10px;"></i>';
+                        }
+                    });
+            });
+        }
+
+        // Topic selection helper for feedback form
+        window.selectTopic = function (topicName) {
+            const topicSelect = document.getElementById('topic');
+            if (topicSelect) {
+                let found = false;
+                for (let i = 0; i < topicSelect.options.length; i++) {
+                    if (topicSelect.options[i].value === topicName) {
+                        topicSelect.selectedIndex = i;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    topicSelect.value = 'Other';
+                }
+            }
+
+            // Gently highlight the contact form
+            const formBox = document.querySelector('.contact-container');
+            if (formBox) {
+                formBox.style.borderColor = 'var(--color-accent)';
+                formBox.style.boxShadow = '0 0 25px rgba(0, 229, 255, 0.3)';
+                setTimeout(() => {
+                    formBox.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                    formBox.style.boxShadow = 'var(--glass-shadow)';
+                }, 2000);
+            }
+        };
+
+        window.selectTopicFromModal = function () {
+            if (currentActiveService === 'digital-ambassadors') {
+                selectTopic('Digital Ambassadors Program');
+            } else if (currentActiveService === 'comic-books') {
+                selectTopic('Comic Books');
+            } else if (currentActiveService === 'board-games') {
+                selectTopic('Board Games');
+            }
+        };
+        // ── Artwork Modal ────────────────────────────────────────────────
+        const artworkData = [
+            null, // index 0 unused — cards are 1-indexed
+            {
+                title: "Reflected Shard", style: "Monochrome Editorial", year: "2026", src: "1.png",
+                workflow: "txt2img", outputFormat: "PNG", resolution: "1024×1536",
+                checkpoint: "Flux.1 Dev", checkpointVer: "v1.0",
+                loras: [
+                    { name: "Film Noir & Chiaroscuro", weight: "0.75", ver: "v2.3" },
+                    { name: "Editorial Gloss", weight: "0.6", ver: "v1.1" }
+                ],
+                cfg: "3.5", steps: "28", seed: "2847361905",
+                prompt: "Monochrome editorial portrait of an elegant woman reflected inside a jagged geometric broken mirror shard held delicately in hand, dramatic chiaroscuro studio lighting, glossy lips, 35mm film grain, avant-garde beauty photography.",
+                negativePrompt: "color, oversaturated, blurry, low quality, bad anatomy, extra limbs, watermark, signature, ugly, jpeg artifacts."
+            },
+            {
+                title: "Transit to Elysium", style: "Cinematic Portrait", year: "2026", src: "2.png",
+                workflow: "txt2img", outputFormat: "JPEG", resolution: "1216×832",
+                checkpoint: "Midjourney v6", checkpointVer: "v6.1",
+                loras: [
+                    { name: "Bioluminescent Nature", weight: "0.85", ver: "v3.0" }
+                ],
+                cfg: "5.0", steps: "50", seed: "7391048221",
+                prompt: "Cinematic portrait of an elegant Black woman with over-ear headphones gazing out of a passenger train window, speeding past an otherworldly bioluminescent blue tropical jungle with oversized banana leaves.",
+                negativePrompt: "blurry, low resolution, bad anatomy, deformed face, extra fingers, watermark, text, overexposed, dull colors."
+            },
+            {
+                title: "Solarium Couture", style: "High Fashion Editorial", year: "2026", src: "3.png",
+                workflow: "txt2img", outputFormat: "PNG", resolution: "1024×1792",
+                checkpoint: "Flux.1 Pro", checkpointVer: "v1.0",
+                loras: [
+                    { name: "High Fashion Editorial", weight: "0.9", ver: "v4.2" },
+                    { name: "Glass & Architecture", weight: "0.65", ver: "v2.0" }
+                ],
+                cfg: "4.0", steps: "35", seed: "5519274830",
+                prompt: "High-fashion editorial shot of a statuesque Black woman model in futuristic mirrored sunglasses and a sleek white two-piece outfit, walking through a soaring sunlit glass conservatory atrium with giant tropical palms.",
+                negativePrompt: "casual clothing, low quality, bad hands, deformed fingers, ugly face, underexposed, grainy, text, watermark."
+            },
+            {
+                title: "Crimson Slit", style: "Dramatic Studio Portrait", year: "2026", src: "4.png",
+                workflow: "txt2img", outputFormat: "PNG", resolution: "896×1152",
+                checkpoint: "SDXL", checkpointVer: "v1.0 Base",
+                loras: [
+                    { name: "Cinematic Lighting FX", weight: "0.8", ver: "v2.1" },
+                    { name: "Dark Studio Aesthetic", weight: "0.7", ver: "v1.5" }
+                ],
+                cfg: "7.0", steps: "40", seed: "3348812976",
+                prompt: "Dramatic studio portrait of a dark-skinned woman with a sculpted high bun, immersed in shadows with a sharp horizontal slit of crimson light cutting across her eyes, deep red monochromatic background, intense gaze, chiaroscuro.",
+                negativePrompt: "smiling, happy expression, bright background, colorful, low quality, bad anatomy, deformed, blurry, jpeg artifacts, watermark."
+            },
+            {
+                title: "Midnight Luminescence", style: "Dreamlike Nocturnal Fashion", year: "2026", src: "5.png",
+                workflow: "txt2img", outputFormat: "PNG", resolution: "1024×1536",
+                checkpoint: "Flux.1 Dev", checkpointVer: "v1.0",
+                loras: [
+                    { name: "Bioluminescent Flora", weight: "0.85", ver: "v2.4" },
+                    { name: "Nocturnal Dreamy Atmosphere", weight: "0.75", ver: "v1.8" }
+                ],
+                cfg: "3.5", steps: "30", seed: "9910234756",
+                prompt: "Dreamlike nocturnal fashion photograph of an elegant dark-skinned model in a black slip gown walking gracefully through an expansive field of glowing bioluminescent blue flowers beneath a starlit galaxy sky, soft ethereal atmosphere.",
+                negativePrompt: "daytime, harsh lighting, colorful outfit, bad anatomy, deformed, blurry, overexposed, text, watermark, ugly."
+            },
+            {
+                title: "Azure Grove", style: "Color-Contrast Editorial", year: "2026", src: "6.png",
+                workflow: "txt2img", outputFormat: "JPEG", resolution: "1216×832",
+                checkpoint: "Midjourney v6", checkpointVer: "v6.1",
+                loras: [
+                    { name: "Vogue Editorial Style", weight: "0.9", ver: "v3.1" },
+                    { name: "Surreal Nature", weight: "0.6", ver: "v2.2" }
+                ],
+                cfg: "5.0", steps: "50", seed: "1234567890",
+                prompt: "Striking color-contrast fashion editorial of a Black woman in a flowing sun-yellow striped dress walking on a pale sand pathway flanked by a surreal grove of vibrant cerulean-blue trees and shrubs, bright natural daylight, vogue aesthetic.",
+                negativePrompt: "dull colors, low quality, blurry, bad anatomy, extra limbs, deformed hands, watermark, text, overexposed."
+            },
+            {
+                title: "Beyond the Canvas", style: "Fine Art Mixed-Media", year: "2026", src: "7.png",
+                workflow: "img2img (edit)", outputFormat: "PNG", resolution: "1024×1024",
+                checkpoint: "Qwen2.5-VL (Image Edit)", checkpointVer: "72B Instruct",
+                loras: [
+                    { name: "Botanical Ink Illustration", weight: "0.8", ver: "v1.6" }
+                ],
+                cfg: "6.5", steps: "45", seed: "4472819035",
+                prompt: "Fine art mixed-media painting of a young Black woman with heterochromia eyes peering through a torn white textured canvas, hand gently holding the torn edge, delicate ink botanical sketches, expressive hyper-detailed realism.",
+                negativePrompt: "photorealistic, 3D render, low quality, blurry, bad anatomy, extra hands, watermark, signature, jpeg artifacts."
+            },
+            {
+                title: "Blind Vision", style: "Avant-Garde Fashion", year: "2026", src: "8.png",
+                workflow: "txt2img", outputFormat: "PNG", resolution: "896×1152",
+                checkpoint: "Stable Diffusion 3", checkpointVer: "SD3 Medium",
+                loras: [
+                    { name: "Aesthetic Quality Modifiers", weight: "0.8", ver: "v5.1" },
+                    { name: "Avant-Garde Monochrome", weight: "0.7", ver: "v2.0" }
+                ],
+                cfg: "5.5", steps: "38", seed: "6629841073",
+                prompt: "Avant-garde monochrome fashion portrait of a model with blunt platinum white bangs, wearing a black ribbon blindfold with bold red EYES typography across the eyes, dark berry lips, high-contrast minimalist studio aesthetic.",
+                negativePrompt: "color, saturated, low quality, bad anatomy, deformed, blurry, extra fingers, watermark, text, overexposed, ugly."
+            },
+            {
+                title: "Moonlit Blossom", style: "Afro-Surrealist Fantasy", year: "2026", src: "9.png",
+                workflow: "txt2img", outputFormat: "PNG", resolution: "1024×1536",
+                checkpoint: "HunyuanDiT", checkpointVer: "v1.2",
+                loras: [
+                    { name: "Afro-Fantasy Portraits", weight: "0.9", ver: "v3.0" },
+                    { name: "Golden Hour Flora", weight: "0.65", ver: "v1.4" }
+                ],
+                cfg: "6.0", steps: "50", seed: "8837620194",
+                prompt: "Enchanted afro-surrealist fantasy portrait of an African woman with afro hair adorned with delicate gold flowers, wearing an embroidered golden gown, looking over her shoulder in a moonlit forest with glowing golden blossoms and fireflies.",
+                negativePrompt: "modern setting, urban, low quality, bad anatomy, deformed, extra limbs, blurry, watermark, text, overexposed, ugly."
+            }
+        ];
+
+        function buildLoraHtml(loras) {
+            if (!loras || !loras.length) return '';
+            return loras.map(function(l) {
+                return '<div class="lora-tag"><i class="fas fa-layer-group"></i> <strong>' + l.name + '</strong> <span class="lora-meta">' + l.ver + ' &nbsp;·&nbsp; weight: ' + l.weight + '</span></div>';
+            }).join('');
+        }
+
+        window.openArtworkModal = function (id) {
+            const art = artworkData[id];
+            if (!art) return;
+
+            const modal = document.getElementById('artworkModal');
+            document.getElementById('artModalTitle').innerText = art.title;
+            document.getElementById('artModalCategory').innerText = art.checkpoint + ' · ' + art.style;
+
+            document.getElementById('artModalBody').innerHTML =
+                '<div class="modal-gallery"><img src="' + art.src + '" alt="' + art.title + '" style="border-radius:12px; max-height:480px; object-fit:cover;"></div>' +
+
+                // ── Generation Stats ──
+                '<div class="artwork-meta-grid" style="margin-top:1.4rem;">' +
+                    '<div class="artwork-meta-item"><div class="artwork-meta-label"><i class="fas fa-sliders-h"></i> CFG Scale</div><div class="artwork-meta-value">' + art.cfg + '</div></div>' +
+                    '<div class="artwork-meta-item"><div class="artwork-meta-label"><i class="fas fa-shoe-prints"></i> Steps</div><div class="artwork-meta-value">' + art.steps + '</div></div>' +
+                    '<div class="artwork-meta-item"><div class="artwork-meta-label"><i class="fas fa-seedling"></i> Seed</div><div class="artwork-meta-value gen-seed">' + art.seed + '</div></div>' +
+                    '<div class="artwork-meta-item"><div class="artwork-meta-label"><i class="fas fa-expand-arrows-alt"></i> Resolution</div><div class="artwork-meta-value">' + art.resolution + '</div></div>' +
+                    '<div class="artwork-meta-item"><div class="artwork-meta-label"><i class="fas fa-cogs"></i> Workflow</div><div class="artwork-meta-value">' + art.workflow + '</div></div>' +
+                    '<div class="artwork-meta-item"><div class="artwork-meta-label"><i class="fas fa-file-image"></i> Format</div><div class="artwork-meta-value">' + art.outputFormat + '</div></div>' +
+                '</div>' +
+
+                // ── Checkpoint ──
+                '<div class="gen-section">' +
+                    '<div class="artwork-meta-label gen-section-label"><i class="fas fa-database"></i> Checkpoint</div>' +
+                    '<div class="checkpoint-tag"><i class="fas fa-cube"></i> <strong>' + art.checkpoint + '</strong> <span class="lora-meta">' + art.checkpointVer + '</span></div>' +
+                '</div>' +
+
+                // ── LoRAs ──
+                (art.loras && art.loras.length ? (
+                '<div class="gen-section">' +
+                    '<div class="artwork-meta-label gen-section-label"><i class="fas fa-layer-group"></i> LoRAs</div>' +
+                    buildLoraHtml(art.loras) +
+                '</div>') : '') +
+
+                // ── Prompt ──
+                '<div class="gen-section prompt-container">' +
+                    '<div class="artwork-meta-label gen-section-label"><i class="fas fa-align-left"></i> Prompt</div>' +
+                    '<p class="prompt-text">' + art.prompt + '</p>' +
+                '</div>' +
+
+                // ── Negative Prompt ──
+                '<div class="gen-section">' +
+                    '<div class="artwork-meta-label gen-section-label negative-label"><i class="fas fa-ban"></i> Negative Prompt</div>' +
+                    '<p class="prompt-text negative-prompt">' + art.negativePrompt + '</p>' +
+                '</div>';
+
+            document.getElementById('artModalFooter').innerHTML =
+                '<a href="https://instagram.com/rekebotai" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:0.9rem;padding:0.7rem 1.5rem;">' +
+                '<i class="fab fa-instagram" style="margin-right:8px;"></i>View on Instagram</a>';
+
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        };
+
+        // Close artwork modal
+        const artworkModal = document.getElementById('artworkModal');
+        const closeArtModalBtn = document.querySelector('.close-art-modal');
+        if (closeArtModalBtn) {
+            closeArtModalBtn.onclick = function () {
+                artworkModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            };
+        }
+        window.addEventListener('click', function (event) {
+            if (event.target === artworkModal) {
+                artworkModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+    </script>
+</body>
+
+</html>

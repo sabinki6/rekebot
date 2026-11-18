@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080D1A" />
+      <stop offset="50%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#061226" />
+    </linearGradient>
+
+    <linearGradient id="cyanPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00E5FF" />
+      <stop offset="100%" stop-color="#8B5CF6" />
+    </linearGradient>
+
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#0088CC" stop-opacity="0.2" />
+    </linearGradient>
+
+    <radialGradient id="ambientCyan" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.25" />
+      <stop offset="50%" stop-color="#8B5CF6" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#080D1A" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.6" />
+      <stop offset="40%" stop-color="#3B82F6" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Glow Filters -->
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="intenseGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12" result="blur2" />
+      <feGaussianBlur stdDeviation="4" result="blur1" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="500" fill="url(#bgGrad)" />
+  <rect width="800" height="500" fill="url(#ambientCyan)" />
+
+  <!-- Cyber Grid Lines (Perspective floor & backdrop) -->
+  <g opacity="0.15" stroke="#00E5FF" stroke-width="1">
+    <line x1="0" y1="100" x2="800" y2="100" />
+    <line x1="0" y1="200" x2="800" y2="200" />
+    <line x1="0" y1="300" x2="800" y2="300" />
+    <line x1="0" y1="380" x2="800" y2="380" />
+    <line x1="0" y1="440" x2="800" y2="440" />
+    <line x1="0" y1="480" x2="800" y2="480" />
+
+    <line x1="400" y1="150" x2="0" y2="500" stroke-width="1.5" />
+    <line x1="400" y1="150" x2="160" y2="500" />
+    <line x1="400" y1="150" x2="320" y2="500" />
+    <line x1="400" y1="150" x2="480" y2="500" />
+    <line x1="400" y1="150" x2="640" y2="500" />
+    <line x1="400" y1="150" x2="800" y2="500" stroke-width="1.5" />
+  </g>
+
+  <!-- Ambient Digital Hexagons & Orbits -->
+  <g opacity="0.3" stroke="#00E5FF" stroke-width="1.2" fill="none">
+    <polygon points="400,60 480,105 480,195 400,240 320,195 320,105" />
+    <polygon points="400,30 520,100 520,240 400,310 280,240 280,100" stroke-dasharray="6 6" />
+    <polygon points="400,10 560,95 560,265 400,350 240,265 240,95" opacity="0.4" />
+  </g>
+
+  <!-- Global Orbital Rings (Connecting Communities) -->
+  <ellipse cx="400" cy="220" rx="260" ry="85" fill="none" stroke="url(#cyanPurple)" stroke-width="2" transform="rotate(-15 400 220)" filter="url(#neonGlow)" opacity="0.75" />
+  <ellipse cx="400" cy="220" rx="260" ry="85" fill="none" stroke="#00E5FF" stroke-width="1" stroke-dasharray="8 12" transform="rotate(25 400 220)" opacity="0.5" />
+
+  <!-- Core Ambient Glow -->
+  <circle cx="400" cy="210" r="130" fill="url(#coreGlow)" />
+
+  <!-- Network Nodes & Constellation Lines -->
+  <g stroke="#00E5FF" stroke-width="1.5" opacity="0.7">
+    <!-- Left Community Nodes -->
+    <line x1="400" y1="170" x2="220" y2="130" stroke-dasharray="4 4" />
+    <line x1="220" y1="130" x2="140" y2="190" />
+    <line x1="140" y1="190" x2="170" y2="280" />
+    <line x1="400" y1="240" x2="260" y2="300" />
+    
+    <!-- Right Community Nodes -->
+    <line x1="400" y1="170" x2="580" y2="130" stroke-dasharray="4 4" />
+    <line x1="580" y1="130" x2="660" y2="190" />
+    <line x1="660" y1="190" x2="630" y2="280" />
+    <line x1="400" y1="240" x2="540" y2="300" />
+
+    <!-- Node circles -->
+    <circle cx="220" cy="130" r="6" fill="#00E5FF" filter="url(#neonGlow)" />
+    <circle cx="140" cy="190" r="5" fill="#8B5CF6" />
+    <circle cx="170" cy="280" r="7" fill="#00E5FF" filter="url(#neonGlow)" />
+    <circle cx="260" cy="300" r="5" fill="#3B82F6" />
+
+    <circle cx="580" cy="130" r="6" fill="#00E5FF" filter="url(#neonGlow)" />
+    <circle cx="660" cy="190" r="5" fill="#8B5CF6" />
+    <circle cx="630" cy="280" r="7" fill="#00E5FF" filter="url(#neonGlow)" />
+    <circle cx="540" cy="300" r="5" fill="#3B82F6" />
+  </g>
+
+  <!-- Central Digital Ambassador (Holographic Avatar Silhouette & Cybernetic Lines) -->
+  <g filter="url(#neonGlow)">
+    <!-- Shoulders & Torso Halo -->
+    <path d="M290,360 C290,300 340,285 365,275 C375,270 380,260 380,245 L380,240 C370,230 365,215 365,190 C365,140 380,120 400,120 C420,120 435,140 435,190 C435,215 430,230 420,240 L420,245 C420,260 425,270 435,275 C460,285 510,300 510,360 Z" 
+          fill="url(#accentGlow)" stroke="#00E5FF" stroke-width="2" />
+
+    <!-- Head Cyber Contours -->
+    <ellipse cx="400" cy="190" rx="36" ry="48" fill="#080D1A" stroke="#00E5FF" stroke-width="2.5" />
+
+    <!-- Visor / Cybernetic Neural Band -->
+    <path d="M370,185 Q400,192 430,185 Q430,196 400,202 Q370,196 370,185 Z" fill="#00E5FF" filter="url(#intenseGlow)" />
+    <line x1="365" y1="188" x2="435" y2="188" stroke="#FFFFFF" stroke-width="2" />
+
+    <!-- Facial Tech Lines -->
+    <path d="M388,148 L400,140 L412,148" fill="none" stroke="#8B5CF6" stroke-width="2" />
+    <circle cx="400" cy="140" r="3" fill="#00E5FF" />
+    <line x1="400" y1="210" x2="400" y2="225" stroke="#00E5FF" stroke-width="2" />
+    <line x1="390" y1="228" x2="410" y2="228" stroke="#00E5FF" stroke-width="2" />
+
+    <!-- Chest Core Reactor & Circuit Paths -->
+    <circle cx="400" cy="305" r="14" fill="#080D1A" stroke="#00E5FF" stroke-width="2.5" />
+    <circle cx="400" cy="305" r="7" fill="#00E5FF" filter="url(#intenseGlow)" />
+    <line x1="400" y1="270" x2="400" y2="291" stroke="#00E5FF" stroke-width="2" />
+    <line x1="400" y1="319" x2="400" y2="355" stroke="#00E5FF" stroke-width="2" />
+    <path d="M386,305 L350,320 L330,355" fill="none" stroke="#8B5CF6" stroke-width="2" />
+    <path d="M414,305 L450,320 L470,355" fill="none" stroke="#8B5CF6" stroke-width="2" />
+  </g>
+
+  <!-- Sound / Engagement Waveform Audio Bars (Representing Voice & Interaction) -->
+  <g transform="translate(400, 395)" opacity="0.85">
+    <line x1="-90" y1="0" x2="-90" y2="-12" stroke="#00E5FF" stroke-width="3" stroke-linecap="round" />
+    <line x1="-75" y1="0" x2="-75" y2="-22" stroke="#00E5FF" stroke-width="3" stroke-linecap="round" />
+    <line x1="-60" y1="0" x2="-60" y2="-35" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" />
+    <line x1="-45" y1="0" x2="-45" y2="-18" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" />
+    <line x1="-30" y1="0" x2="-30" y2="-42" stroke="#8B5CF6" stroke-width="3" stroke-linecap="round" />
+    <line x1="-15" y1="0" x2="-15" y2="-28" stroke="#8B5CF6" stroke-width="3" stroke-linecap="round" />
+    <line x1="0" y1="0" x2="0" y2="-55" stroke="#00E5FF" stroke-width="3.5" stroke-linecap="round" filter="url(#neonGlow)" />
+    <line x1="15" y1="0" x2="15" y2="-28" stroke="#8B5CF6" stroke-width="3" stroke-linecap="round" />
+    <line x1="30" y1="0" x2="30" y2="-42" stroke="#8B5CF6" stroke-width="3" stroke-linecap="round" />
+    <line x1="45" y1="0" x2="45" y2="-18" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" />
+    <line x1="60" y1="0" x2="60" y2="-35" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" />
+    <line x1="75" y1="0" x2="75" y2="-22" stroke="#00E5FF" stroke-width="3" stroke-linecap="round" />
+    <line x1="90" y1="0" x2="90" y2="-12" stroke="#00E5FF" stroke-width="3" stroke-linecap="round" />
+  </g>
+
+  <!-- High-tech Banner Frame -->
+  <g transform="translate(400, 445)">
+    <rect x="-170" y="-18" width="340" height="34" rx="17" fill="#0F172A" stroke="#00E5FF" stroke-width="1.5" opacity="0.9" />
+    <text x="0" y="5" font-family="'Outfit', 'Inter', sans-serif" font-size="13" font-weight="800" fill="#00E5FF" letter-spacing="3" text-anchor="middle">
+      DIGITAL AMBASSADORS PROGRAM
+    </text>
+  </g>
+
+  <!-- Corner Tech HUD Accents -->
+  <path d="M30,30 L60,30 M30,30 L30,60" stroke="#00E5FF" stroke-width="2" fill="none" opacity="0.6" />
+  <circle cx="30" cy="30" r="3" fill="#00E5FF" />
+  <path d="M770,30 L740,30 M770,30 L770,60" stroke="#00E5FF" stroke-width="2" fill="none" opacity="0.6" />
+  <circle cx="770" cy="30" r="3" fill="#00E5FF" />
+  <path d="M30,470 L60,470 M30,470 L30,440" stroke="#00E5FF" stroke-width="2" fill="none" opacity="0.6" />
+  <circle cx="30" cy="470" r="3" fill="#00E5FF" />
+  <path d="M770,470 L740,470 M770,470 L770,440" stroke="#00E5FF" stroke-width="2" fill="none" opacity="0.6" />
+  <circle cx="770" cy="470" r="3" fill="#00E5FF" />
+</svg>
